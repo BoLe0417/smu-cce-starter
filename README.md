@@ -24,18 +24,25 @@ This project is easiest to run in GitHub Codespaces, but the same steps also wor
     python -m pip install -r requirements.txt
     ```
 
-4. Open the `notebooks/` folder in VS Code. Open a notebook, select a Python kernel if prompted, and run its cells from top to bottom. The notebooks retrieve current data from Yahoo Finance, so an internet connection is required.
+4. Start the Streamlit application:
+
+    ```bash
+    python -m streamlit run src/app.py
+    ```
+
+    In GitHub Codespaces, open the forwarded port shown in the terminal. In the **Ports** tab, set that port's visibility to **Public**, then select **Open in Browser**. The app retrieves current data from Yahoo Finance, so an internet connection is required.
 
 ## Code Walkthrough
 
 - `notebooks/filings.ipynb` retrieves a company's income statement, balance sheet, and cash flow data.
-- `notebooks/news.ipynb` retrieves and prints recent news for a stock ticker.
+- `notebooks/news.ipynb` retrieves recent news for a stock ticker.
 - `notebooks/stock_price_ratings.ipynb` retrieves the current stock price and recent analyst ratings.
+- `src/app.py` is the Streamlit user interface; `src/analysis.py` contains reusable data-fetching functions based on the notebooks.
 - `lessons/` contains beginner-friendly course instructions for setting up Codespaces and running the project.
 - `requirements.txt` lists the Python packages used by the notebooks, including `yfinance` and `pandas`.
 - `README.md` provides an overview and setup guide.
 
-To use the project, open one of the notebooks, run the import and function-definition cells, then run the final example cell with a ticker such as `MU` or `GOOG`. Each notebook calls Yahoo Finance through `yfinance`, processes the returned data, and displays the result as text or tables in the notebook. Run the notebooks independently depending on the type of financial information you need.
+The app starts with the ticker `MU`. Enter a ticker symbol, choose **filings**, **news**, or **stock price ratings**, and select **Run**. The app calls Yahoo Finance through `yfinance` and displays the results in tables or a price metric. The notebooks remain available as the original examples of each analysis.
 
  # Cloud Computing for Economics: Starter Repo 
 
@@ -60,5 +67,6 @@ To use the project, open one of the notebooks, run the import and function-defin
   .
   ├── lessons/          # Step-by-step course instructions
   ├── notebooks/        # Starter financial-data notebooks
+    ├── src/              # Streamlit app and reusable analysis functions
   ├── requirements.txt  # Python dependencies
   └── README.md         # Course overview
